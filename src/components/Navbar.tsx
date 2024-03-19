@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { IoMdCloseCircle } from "react-icons/io";
-import logo from "../../public/logo.png";
+import logo from "/logo.png";
 import { NavbarData } from "../lib/data";
 import { NavbarItems } from "../interfaces";
 
@@ -23,8 +23,9 @@ const Navbar = () => {
   return (
     <header>
       <nav className="flex justify-between items-center w-[80%] mx-auto my-[30px]">
-        <Link to="/" className="z-20">
-          <img className="w-[60px]" src={logo} alt="Logo" />
+        <Link to="/" className="z-20 flex items-center">
+          <img className="w-[60px] " src={logo} alt="Logo" />
+          <h2 className="font-bold">TimeKeeper</h2>
         </Link>
 
         <div className="sm:hidden">
