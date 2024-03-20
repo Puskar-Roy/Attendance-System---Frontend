@@ -7,8 +7,7 @@ import { NavbarData } from "../lib/data";
 import { NavbarItems } from "../interfaces";
 import { useLogout } from "../hooks/useLogout";
 import { useAuthContext } from "../hooks/useAuthContext";
-// import { AuthContext } from "../context/AuthContext";
-// import { useContext } from "react";
+
 const NavItem = ({ href, tags }: NavbarItems) => {
   return (
     <li className="hover:text-indigo-500 font-semibold text-lg gabarito-regular">
