@@ -34,7 +34,7 @@ const Navbar = () => {
         <Link to="/" className="z-20 flex items-center gap-1">
           <img className="h-[55px] " src={logo} alt="Logo" />
           <h2 className="text-2xl font-bold text-indigo-400 ubuntu-bold">
-            TimeKeeper
+            Attendance
           </h2>
         </Link>
 
@@ -61,7 +61,12 @@ const Navbar = () => {
           <ul className="flex flex-col gap-[30px]">
             {!state.user &&
               NavbarData.map(({ href, tags }: NavbarItems) => (
-                <NavItem closeNav={toogleMenu} key={href} href={href} tags={tags} />
+                <NavItem
+                  closeNav={toogleMenu}
+                  key={href}
+                  href={href}
+                  tags={tags}
+                />
               ))}
             {state.user && (
               <div className="flex flex-col gap-[30px]">
