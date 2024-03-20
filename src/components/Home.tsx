@@ -1,5 +1,16 @@
 import { FaHandPaper } from "react-icons/fa";
+import { useAuthContext } from "../hooks/useAuthContext";
+import Admin from "./Admin";
+
 const Home = () => {
+  const { state } = useAuthContext();
+
+  if (state.user?.role === `${import.meta.env.VITE_ROLE}`) {
+    return <Admin/>;
+  }
+
+
+
   return (
     <div className="pt-[3.25rem] px-[3rem] flex flex-col gap-[3rem] ubuntu-bold h-[70vh]">
       <div className="flex flex-col gap-[50px]">
@@ -24,18 +35,12 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <button className="px-3 py-3 bg-indigo-500 rounded-xl w-[86%] sm:w-[31%] mx-auto text-white ubuntu-medium flex justify-center items-center gap-3 hover:bg-indigo-400">
-            <FaHandPaper />
-            Give Todays Attendance
-          </button>
-          {/* <h1 className="p-2 text-center ubuntu-light bg-green-200 w-[350px] mx-auto rounded text-black">
-            {" "}
-            Attendance Successfull!
-          </h1>
-          <h1 className="p-2 text-center ubuntu-light bg-rose-200 w-[350px] mx-auto rounded text-black">
-            {" "}
-            Attendance Failed!
-          </h1> */}
+         
+            <button className="px-3 py-3 bg-indigo-500 rounded-xl w-[86%] sm:w-[31%] mx-auto text-white ubuntu-medium flex justify-center items-center gap-3 hover:bg-indigo-400">
+              <FaHandPaper />
+              Give Today's Attendance
+            </button>
+          
         </div>
       </div>
     </div>
