@@ -1,6 +1,7 @@
 export interface NavbarItems {
   href: string;
   tags: string;
+  closeNav?: () => void;
 }
 
 export interface RegisterFormData {

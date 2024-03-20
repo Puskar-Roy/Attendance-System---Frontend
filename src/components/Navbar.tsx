@@ -8,9 +8,9 @@ import { NavbarItems } from "../interfaces";
 import { useLogout } from "../hooks/useLogout";
 import { useAuthContext } from "../hooks/useAuthContext";
 
-const NavItem = ({ href, tags }: NavbarItems) => {
+const NavItem = ({ href, tags , closeNav }: NavbarItems) => {
   return (
-    <li className="hover:text-indigo-500 font-semibold text-lg gabarito-regular">
+    <li onClick={closeNav} className="hover:text-indigo-500 font-semibold text-lg gabarito-regular">
       <Link to={href}>{tags}</Link>
     </li>
   );
@@ -26,6 +26,7 @@ const Navbar = () => {
   };
   const handleClick = () => {
     logout();
+    setToggle(!toggle);
   };
   return (
     <header>
@@ -60,7 +61,7 @@ const Navbar = () => {
           <ul className="flex flex-col gap-[30px]">
             {!state.user &&
               NavbarData.map(({ href, tags }: NavbarItems) => (
-                <NavItem key={href} href={href} tags={tags} />
+                <NavItem closeNav={toogleMenu} key={href} href={href} tags={tags} />
               ))}
             {state.user && (
               <div className="flex flex-col gap-[30px]">
