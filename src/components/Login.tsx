@@ -1,7 +1,9 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { LoginFormData } from "../interfaces";
+import { useLogin } from "../hooks/useLogin";
 const Login = () => {
+  const { login, error, isLoading, isSucess } = useLogin();
     const [formData, setFormData] = useState<LoginFormData>({
       email: "",
       password: "",
@@ -16,10 +18,10 @@ const Login = () => {
       });
     };
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
 
-      console.log(formData);
+      await login(formData)
     };
 
   return (
@@ -48,7 +50,10 @@ const Login = () => {
               onChange={handleChange}
               autoComplete="current-password"
             />
-            <button className="mt-5 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
+            <button
+              disabled={isLoading}
+              className="mt-5 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+            >
               <svg
                 className="w-6 h-6 -ml-2"
                 fill="none"
@@ -59,6 +64,16 @@ const Login = () => {
               ></svg>
               <span className="ml-3">Login</span>
             </button>
+            {error && (
+              <div className="bg-rose-200 text-rose-500 p-5 rounded-lg mt-4">
+                Invalid credentials
+              </div>
+            )}
+            {isSucess && (
+              <div className="bg-green-200 text-green-500 p-5 rounded-lg mt-4">
+                Login Done!
+              </div>
+            )}
             <p className="mt-6 text-xs text-gray-600 text-center">
               Did not have an account?
               <Link
