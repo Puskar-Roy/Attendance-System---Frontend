@@ -1,17 +1,15 @@
-import { createContext, useReducer, ReactNode } from "react";
+import { createContext, useReducer, ReactNode ,useEffect } from "react";
 
 interface State {
   user: User | null;
 }
 
-interface User {
+export interface User {
   message?: string;
   success?: boolean;
   token?: string;
   email?: string;
 }
-
-
 
 interface Action {
   type: string;
@@ -31,7 +29,6 @@ export const AuthContext = createContext<{
   dispatch: React.Dispatch<Action>;
 }>({ state: initialState, dispatch: () => null });
 
-
 export const authReducer = (state: State, action: Action): State => {
   switch (action.type) {
     case "LOGIN":
@@ -45,12 +42,18 @@ export const authReducer = (state: State, action: Action): State => {
 
 export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
+  useEffect(()=>{
+    const userString = localStorage.getItem("user");
+    if (userString) {
+      const user: User = JSON.parse(userString);
+      dispatch({ type: "LOGIN", payload: user });
+    }
+  },[])
+
   console.log("Auth Context State : ", state);
   return (
     <AuthContext.Provider value={{ state, dispatch }}>
       {children}
     </AuthContext.Provider>
-  )
+  );
 };
-
-
