@@ -3,6 +3,7 @@ import "./index.css";
 import "./App.css";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import { useAuthContext } from "./hooks/useAuthContext";
@@ -17,7 +18,7 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={state.user ? <Home /> : <Navigate to="/login" />}
+            element={!state.user ? <Home /> : <Navigate to="/login" />}
           />
           <Route
             path="/login"
@@ -28,6 +29,7 @@ function App() {
             element={!state.user ? <Register /> : <Navigate to="/" />}
           />
         </Routes>
+        <Footer/>
       </BrowserRouter>
     </>
   );
