@@ -2,30 +2,31 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { IoMdCloseCircle } from "react-icons/io";
-import logo from "/logo.png";
+import logo from "/logo1.png";
 import { NavbarData } from "../lib/data";
 import { NavbarItems } from "../interfaces";
 
-
 const NavItem = ({ href, tags }: NavbarItems) => {
   return (
-    <li className="hover:text-rose-700">
+    <li className="hover:text-indigo-500 font-semibold text-lg gabarito-regular">
       <Link to={href}>{tags}</Link>
     </li>
   );
 };
 
 const Navbar = () => {
-    const [toggle, setToggle] = useState<boolean>(false);
-      const toogleMenu = () => {
-        setToggle(!toggle);
-      };
+  const [toggle, setToggle] = useState<boolean>(false);
+  const toogleMenu = () => {
+    setToggle(!toggle);
+  };
   return (
     <header>
       <nav className="flex justify-between items-center w-[80%] mx-auto my-[30px]">
-        <Link to="/" className="z-20 flex items-center">
-          <img className="w-[60px] " src={logo} alt="Logo" />
-          <h2 className="font-bold">TimeKeeper</h2>
+        <Link to="/" className="z-20 flex items-center gap-1">
+          <img className="h-[55px] " src={logo} alt="Logo" />
+          <h2 className="text-2xl font-bold text-indigo-400 ubuntu-bold">
+            TimeKeeper
+          </h2>
         </Link>
 
         <div className="sm:hidden">
@@ -55,7 +56,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="hidden sm:block">
-          <ul className="list-none flex gap-x-10">
+          <ul className="list-none flex gap-x-12">
             {NavbarData.map(({ href, tags }: NavbarItems) => (
               <NavItem key={href} href={href} tags={tags} />
             ))}
