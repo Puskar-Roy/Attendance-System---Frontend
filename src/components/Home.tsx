@@ -2,7 +2,9 @@
 const Home = () => {
   return (
     <div className="text-center">
-      Home
+      <aside>
+        
+      </aside>
     </div>
   )
 }

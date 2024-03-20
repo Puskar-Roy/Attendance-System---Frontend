@@ -47,7 +47,7 @@ const Navbar = () => {
           ) : (
             <HiOutlineMenuAlt3
               onClick={toogleMenu}
-              className="text-rose-500 text-3xl"
+              className="text-indigo-400 text-3xl"
             />
           )}
         </div>
