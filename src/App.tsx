@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import ViewAttendanse from "./components/ViewAttendanse";
 import { useAuthContext } from "./hooks/useAuthContext";
 
 function App() {
@@ -28,8 +29,18 @@ function App() {
             path="/register"
             element={!state.user ? <Register /> : <Navigate to="/" />}
           />
+          <Route
+            path="/viewAttendance"
+            element={
+              state.user?.role === `${import.meta.env.VITE_ROLE}` ? (
+                <ViewAttendanse />
+              ) : (
+                <Navigate to="/" />
+              )
+            }
+          />
         </Routes>
-        <Footer/>
+        <Footer />
       </BrowserRouter>
     </>
   );

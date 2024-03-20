@@ -68,6 +68,12 @@ const Navbar = () => {
                   tags={tags}
                 />
               ))}
+            {state.user?.role === `${import.meta.env.VITE_ROLE}` ? (
+              <div className="flex flex-col gap-[30px]">
+                <NavItem href="/viewAttendance" tags="View Attendance" />
+                <NavItem href="/viewAttendance" tags="Take Attendance" />
+              </div>
+            ) : null}
             {state.user && (
               <div className="flex flex-col gap-[30px]">
                 <div className="hover:text-indigo-500 font-semibold text-lg gabarito-regular cursor-pointer">
@@ -89,6 +95,12 @@ const Navbar = () => {
               NavbarData.map(({ href, tags }: NavbarItems) => (
                 <NavItem key={href} href={href} tags={tags} />
               ))}
+            {state.user?.role === `${import.meta.env.VITE_ROLE}` ? (
+              <div className="list-none flex gap-x-12">
+                <NavItem href="/viewAttendance" tags="View Attendance" />
+                <NavItem href="/viewAttendance" tags="Take Attendance" />
+              </div>
+            ) : null}
             {state.user && (
               <div className="list-none flex gap-x-12">
                 <div className="hover:text-indigo-500 font-semibold text-lg gabarito-regular cursor-pointer">
