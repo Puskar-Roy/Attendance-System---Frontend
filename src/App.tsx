@@ -7,31 +7,28 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import { useAuthContext } from "./hooks/useAuthContext";
 
-
 function App() {
-      const { state } = useAuthContext();
+  const { state } = useAuthContext();
 
   return (
     <>
-     
-        <BrowserRouter>
-          <Navbar />
-          <Routes>
-            <Route
-              path="/"
-              element={state.user ? <Home /> : <Navigate to="/login" />}
-            />
-            <Route
-              path="/login"
-              element={!state.user ? <Login /> : <Navigate to="/" />}
-            />
-            <Route
-              path="/register"
-              element={!state.user ? <Register /> : <Navigate to="/" />}
-            />
-          </Routes>
-        </BrowserRouter>
-      
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route
+            path="/"
+            element={state.user ? <Home /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/login"
+            element={!state.user ? <Login /> : <Navigate to="/" />}
+          />
+          <Route
+            path="/register"
+            element={!state.user ? <Register /> : <Navigate to="/" />}
+          />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
