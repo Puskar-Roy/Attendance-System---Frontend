@@ -5,7 +5,7 @@ import Admin from "./Admin";
 const Home = () => {
   const { state } = useAuthContext();
 
-  if (state.user?.role === `${import.meta.env.VITE_ROLE}`) {
+  if (state.user?.role === `admin`) {
     return <Admin/>;
   }
 
