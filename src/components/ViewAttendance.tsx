@@ -11,7 +11,7 @@ interface Attendance {
   date: string;
 }
 
-const ViewAttendanse: React.FC = () => {
+const ViewAttendance: React.FC = () => {
   const [startDate, setStartDate] = useState<Date>(new Date());
   const [show , setShow] = useState<boolean>(false);
 
@@ -164,4 +164,4 @@ const ViewAttendanse: React.FC = () => {
   );
 };
 
-export default ViewAttendanse;
+export default ViewAttendance;

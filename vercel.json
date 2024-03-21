@@ -11,6 +11,14 @@
     {
       "src": "/login",
       "dest": "/"
+    },
+    {
+      "src": "/viewAttendance",
+      "dest": "/"
+    },
+    {
+      "src": "/takeAttendance",
+      "dest": "/"
     }
   ]
 }

@@ -10,6 +10,7 @@ export interface User {
   token?: string;
   email?: string;
   role?: string;
+  id?:string;
 }
 
 interface Action {

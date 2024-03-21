@@ -70,8 +70,16 @@ const Navbar = () => {
               ))}
             {state.user?.role === `${import.meta.env.VITE_ROLE}` ? (
               <div className="flex flex-col gap-[30px]">
-                <NavItem href="/viewAttendance" tags="View Attendance" />
-                <NavItem href="/viewAttendance" tags="Take Attendance" />
+                <NavItem
+                  closeNav={toogleMenu}
+                  href="/viewAttendance"
+                  tags="View Attendance"
+                />
+                <NavItem
+                  closeNav={toogleMenu}
+                  href="/takeAttendance"
+                  tags="Take Attendance"
+                />
               </div>
             ) : null}
             {state.user && (
@@ -98,7 +106,7 @@ const Navbar = () => {
             {state.user?.role === `${import.meta.env.VITE_ROLE}` ? (
               <div className="list-none flex gap-x-12">
                 <NavItem href="/viewAttendance" tags="View Attendance" />
-                <NavItem href="/viewAttendance" tags="Take Attendance" />
+                <NavItem href="/takeAttendance" tags="Take Attendance" />
               </div>
             ) : null}
             {state.user && (
