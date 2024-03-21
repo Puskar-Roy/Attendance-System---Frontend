@@ -1,104 +1,58 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
+import axios from "axios";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 import "react-datepicker/dist/react-datepicker.css";
 
 interface Attendance {
-  id: number;
-  userName: string;
+  _id: string;
+  userId: {
+    _id: string;
+    name: string;
+    email: string;
+  };
   status: string;
-  email: string;
   date: string;
 }
 
+
 const ViewAttendance: React.FC = () => {
+   const { state } = useAuthContext();
   const [startDate, setStartDate] = useState<Date>(new Date());
   const [show , setShow] = useState<boolean>(false);
+  const [attendanceData, setAttendanceData] = useState<Attendance[]>([]);
 
   const handleDateChange = (date: Date | null) => {
     if (date) {
       setStartDate(date);
     }
   };
+  
 
-  const handleViewAttendance = () => {
-    setShow(!show)
+  const handleViewAttendance =async () => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_API}/api/attendance/date/${startDate
+          .toISOString()
+          .slice(0, 10)}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${state.user?.token}`,
+          },
+        }
+      );
+      setAttendanceData(response.data);
+      setShow(true);
+    } catch (error) {
+      console.error("Error fetching attendance data:", error);
+      setShow(false);
+    }
   };
 
-  // Dummy array of attendance data
-  const dummyData: Attendance[] = [
-    {
-      id: 1,
-      userName: "Puskar",
-      status: "Absent",
-      email: "fake@gmail.com",
-      date: "10/05/28",
-    },
-    {
-      id: 2,
-      userName: "John Doe",
-      status: "Present",
-      email: "john.doe@example.com",
-      date: "10/05/28",
-    },
-    {
-      id: 3,
-      userName: "Jane Smith",
-      status: "Absent",
-      email: "jane.smith@example.com",
-      date: "10/05/28",
-    },
-    {
-      id: 3,
-      userName: "Jane Smith",
-      status: "Absent",
-      email: "jane.smith@example.com",
-      date: "10/05/28",
-    },
-    {
-      id: 3,
-      userName: "Jane Smith",
-      status: "Absent",
-      email: "jane.smith@example.com",
-      date: "10/05/28",
-    },
-    {
-      id: 3,
-      userName: "Jane Smith",
-      status: "Absent",
-      email: "jane.smith@example.com",
-      date: "10/05/28",
-    },
-    {
-      id: 3,
-      userName: "Jane Smith",
-      status: "Absent",
-      email: "jane.smith@example.com",
-      date: "10/05/28",
-    },
-    {
-      id: 3,
-      userName: "Jane Smith",
-      status: "Absent",
-      email: "jane.smith@example.com",
-      date: "10/05/28",
-    },
-    {
-      id: 3,
-      userName: "Jane Smith",
-      status: "Absent",
-      email: "jane.smith@example.com",
-      date: "10/05/28",
-    },
-    {
-      id: 3,
-      userName: "Jane Smith",
-      status: "Absent",
-      email: "jane.smith@example.com",
-      date: "10/05/28",
-    },
-    
-  ];
+  console.log(attendanceData);
+  
 
   return (
     <div className="min-h-[70vh]  w-[80%] mx-auto">
@@ -123,43 +77,45 @@ const ViewAttendance: React.FC = () => {
           </button>
         </div>
       </div>
-      {show && (<div className="mt-[40px]">
-        <div className="relative overflow-x-auto max-h-[400px]">
-          <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
-            <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
-              <tr>
-                <th scope="col" className="px-6 py-3">
-                  User Name
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Status
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Email
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Date
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {dummyData.map((attendance) => (
-                <tr key={attendance.id} className="bg-white border-b ">
-                  <th
-                    scope="row"
-                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
-                  >
-                    {attendance.userName}
+      {show && (
+        <div className="mt-[40px]">
+          <div className="relative overflow-x-auto max-h-[400px]">
+            <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
+              <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
+                <tr>
+                  <th scope="col" className="px-6 py-3">
+                    User Name
                   </th>
-                  <td className="px-6 py-4">{attendance.status}</td>
-                  <td className="px-6 py-4">{attendance.email}</td>
-                  <td className="px-6 py-4">{attendance.date}</td>
+                  <th scope="col" className="px-6 py-3">
+                    Status
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    Email
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    Date
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {attendanceData.map((attendance) => (
+                  <tr key={attendance._id} className="bg-white border-b ">
+                    <th
+                      scope="row"
+                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+                    >
+                      {attendance.userId.name}
+                    </th>
+                    <td className="px-6 py-4">{attendance.status}</td>
+                    <td className="px-6 py-4">{attendance.userId.email}</td>
+                    <td className="px-6 py-4">{attendance.date}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>)}
+      )}
     </div>
   );
 };
