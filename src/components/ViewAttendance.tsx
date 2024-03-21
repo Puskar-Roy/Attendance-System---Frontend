@@ -51,7 +51,6 @@ const ViewAttendance: React.FC = () => {
     }
   };
 
-  console.log(attendanceData);
   
 
   return (
@@ -108,11 +107,18 @@ const ViewAttendance: React.FC = () => {
                     </th>
                     <td className="px-6 py-4">{attendance.status}</td>
                     <td className="px-6 py-4">{attendance.userId.email}</td>
-                    <td className="px-6 py-4">{attendance.date}</td>
+                    <td className="px-6 py-4">
+                      {attendance.date.toString().slice(0, 10)}
+                    </td>
                   </tr>
                 ))}
               </tbody>
             </table>
+            {attendanceData.length === 0 ? (
+              <div className="text-2xl text-center text-indigo-500 mt-[50px]">
+                No Data Available
+              </div>
+            ) : null}
           </div>
         </div>
       )}
