@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import axios from "axios";
 import { useAuthContext } from "../hooks/useAuthContext";
-
+import Loading from "./Loading";
 import "react-datepicker/dist/react-datepicker.css";
 
 interface Attendance {
@@ -16,11 +16,11 @@ interface Attendance {
   date: string;
 }
 
-
 const ViewAttendance: React.FC = () => {
-   const { state } = useAuthContext();
+  const { state } = useAuthContext();
   const [startDate, setStartDate] = useState<Date>(new Date());
-  const [show , setShow] = useState<boolean>(false);
+   const [loading, setLoading] = useState<boolean>(false);
+  const [show, setShow] = useState<boolean>(false);
   const [attendanceData, setAttendanceData] = useState<Attendance[]>([]);
 
   const handleDateChange = (date: Date | null) => {
@@ -28,9 +28,9 @@ const ViewAttendance: React.FC = () => {
       setStartDate(date);
     }
   };
-  
 
-  const handleViewAttendance =async () => {
+  const handleViewAttendance = async () => {
+    setLoading(true);
     try {
       const response = await axios.get(
         `${import.meta.env.VITE_API}/api/attendance/date/${startDate
@@ -48,10 +48,10 @@ const ViewAttendance: React.FC = () => {
     } catch (error) {
       console.error("Error fetching attendance data:", error);
       setShow(false);
+    } finally {
+      setLoading(false);
     }
   };
-
-  
 
   return (
     <div className="min-h-[70vh]  w-[80%] mx-auto">
@@ -78,7 +78,7 @@ const ViewAttendance: React.FC = () => {
       </div>
       {show && (
         <div className="mt-[40px]">
-          <div className="relative overflow-x-auto max-h-[400px]">
+          {loading ? <Loading/> : (<div className="relative overflow-x-auto max-h-[400px]">
             <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
               <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
                 <tr>
@@ -119,7 +119,7 @@ const ViewAttendance: React.FC = () => {
                 No Data Available
               </div>
             ) : null}
-          </div>
+          </div>)}
         </div>
       )}
     </div>

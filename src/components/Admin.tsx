@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
+import Loading from "./Loading";
 import { Link } from "react-router-dom";
 interface User {
   name: string;
@@ -9,6 +10,7 @@ interface User {
 }
 const Admin = () => {
     const { state } = useAuthContext();
+     const [loading, setLoading] = useState<boolean>(true);
   const [userss, setUsers] = useState<User[]>([]);
    useEffect(() => {
      const fetchUsers = async () => {
@@ -23,8 +25,10 @@ const Admin = () => {
            }
          );
          setUsers(response.data);
+         setLoading(false);
        } catch (error) {
          console.error("Error fetching users:", error);
+         setLoading(false);
        }
      };
 
@@ -38,27 +42,31 @@ const Admin = () => {
           All Users ({userss.length})
         </h1>
       </div>
-      <div className="sm:w-[40%] mx-auto max-h-[400px] overflow-y-auto">
-        <ul className="divide-y divide-gray-200">
-          {userss.map((user, index) => (
-            <Link
-              to={`/user/${user._id}`}
-              key={index}
-              className="flex justify-center items-center py-4 px-6"
-            >
-              <h3 className="text-lg font-medium text-gray-800">
-                {index + 1}.
-              </h3>
-              <div className="flex-1">
+      {loading ? (
+        <Loading/>
+      ) : (
+        <div className="sm:w-[40%] mx-auto max-h-[400px] overflow-y-auto">
+          <ul className="divide-y divide-gray-200">
+            {userss.map((user, index) => (
+              <Link
+                to={`/user/${user._id}`}
+                key={index}
+                className="flex justify-center items-center py-4 px-6"
+              >
                 <h3 className="text-lg font-medium text-gray-800">
-                  {user.name}
+                  {index + 1}.
                 </h3>
-                <p className="text-gray-600 text-base">{user.email}</p>
-              </div>
-            </Link>
-          ))}
-        </ul>
-      </div>
+                <div className="flex-1">
+                  <h3 className="text-lg font-medium text-gray-800">
+                    {user.name}
+                  </h3>
+                  <p className="text-gray-600 text-base">{user.email}</p>
+                </div>
+              </Link>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };

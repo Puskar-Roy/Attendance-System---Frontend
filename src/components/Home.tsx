@@ -3,6 +3,7 @@ import axios from "axios";
 import { FaHandPaper } from "react-icons/fa";
 import { useAuthContext } from "../hooks/useAuthContext";
 import Admin from "./Admin";
+import Loading from "./Loading";
 
 interface AttendanceData {
   presentDays: number;
@@ -15,6 +16,7 @@ const Home = () => {
   const [attendanceData, setAttendanceData] = useState<AttendanceData | null>(
     null
   );
+   const [loading, setLoading] = useState<boolean>(true);
   const getMessage = () => {
     setAtDone(true);
 
@@ -44,6 +46,8 @@ const Home = () => {
         setAttendanceData(response.data);
       } catch (error) {
         console.error("Error fetching attendance data:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -84,7 +88,7 @@ const Home = () => {
           </h1>
         </div>
 
-        <div className="flex flex-col gap-10 justify-center">
+        {loading ? <Loading/> :(<div className="flex flex-col gap-10 justify-center">
           <div className="flex justify-center  w-[86%] mx-auto  gap-6 sm:gap-10">
             <div>
               <h1 className="font-bold">Total Present</h1>
@@ -117,7 +121,7 @@ const Home = () => {
               Attendance Already Done!
             </h1>
           )}
-        </div>
+        </div>)}
       </div>
     </div>
   );
