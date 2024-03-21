@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { Link } from "react-router-dom";
+import Loading from "./Loading";
 
 interface User {
   _id: string;
@@ -27,6 +28,7 @@ const UserAttendance: React.FC = () => {
   const [show, setShow] = useState<boolean>(false);
   const [selectedUserId, setSelectedUserId] = useState<string>("");
   const [attendance, setAttendance] = useState<AttendanceDataa[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
   const { state } = useAuthContext();
 
   useEffect(() => {
@@ -42,8 +44,10 @@ const UserAttendance: React.FC = () => {
           }
         );
         setUsers(response.data);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching users:", error);
+        setLoading(false);
       }
     };
     fetchUsers();
@@ -76,7 +80,7 @@ const UserAttendance: React.FC = () => {
       <h1 className="text-2xl xl:text-3xl font-extrabold text-center text-indigo-400 ubuntu-bold mt-12">
         Manage Attendance
       </h1>
-      <div className="flex w-[70%] flex-col sm:flex-row mx-auto justify-center gap-5 sm:gap-0 sm:justify-between items-center mt-10">
+      { loading ? <Loading/> : <div className="flex w-[70%] flex-col sm:flex-row mx-auto justify-center gap-5 sm:gap-0 sm:justify-between items-center mt-10">
         <div className="flex flex-col gap-3">
           <h1 className="font-bold">Select A User</h1>
           <select
@@ -99,8 +103,7 @@ const UserAttendance: React.FC = () => {
         >
           Show Attendance
         </button>
-      </div>
-
+      </div>}
       {show && (
         <div className="overflow-hidden mt-9">
           <table className="min-w-[60%] mx-auto text-left text-sm font-light text-surface ">
