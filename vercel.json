@@ -23,6 +23,10 @@
     {
       "src": "/userprofile",
       "dest": "/"
+    },
+    {
+      "src": "/countAttendance",
+      "dest": "/"
     }
   ]
 }

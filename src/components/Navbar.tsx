@@ -80,6 +80,11 @@ const Navbar = () => {
                   href="/usersAttendance"
                   tags="Manage Attendance"
                 />
+                <NavItem
+                  closeNav={toogleMenu}
+                  href="/countAttendance"
+                  tags="Take Attendance"
+                />
               </div>
             ) : null}
             {state.user && (
@@ -107,6 +112,7 @@ const Navbar = () => {
               <div className="list-none flex gap-x-12">
                 <NavItem href="/viewAttendance" tags="View Attendance" />
                 <NavItem href="/usersAttendance" tags="Manage Attendance" />
+                <NavItem href="/countAttendance" tags="Take Attendance" />
               </div>
             ) : null}
             {state.user && (
