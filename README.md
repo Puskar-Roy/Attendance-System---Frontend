@@ -40,6 +40,13 @@ Attendance Portal ! 📝</h3>
  - New users can create an account to access the application.
 
   ### 2. Admin Panel
+
+  ### Date-Based Attendance Management for All Users
+
+  ![attendance](https://res.cloudinary.com/dky3cpvtf/image/upload/v1711061721/Attendance%20App/Untitled_design_s1jlrx.png)
+
+  - Admins can select a date from the calendar and then mark the attendance of all users based on that date.
+
   
   #### View All Users and Mark All Absent Users
     
