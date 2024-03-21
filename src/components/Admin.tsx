@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
 import Loading from "./Loading";
-import { Link } from "react-router-dom";
+
 interface User {
   name: string;
   email: string;
@@ -48,8 +48,8 @@ const Admin = () => {
         <div className="sm:w-[40%] mx-auto max-h-[400px] overflow-y-auto">
           <ul className="divide-y divide-gray-200">
             {userss.map((user, index) => (
-              <Link
-                to={`/user/${user._id}`}
+              <div
+                
                 key={index}
                 className="flex justify-center items-center py-4 px-6"
               >
@@ -62,7 +62,7 @@ const Admin = () => {
                   </h3>
                   <p className="text-gray-600 text-base">{user.email}</p>
                 </div>
-              </Link>
+              </div>
             ))}
           </ul>
         </div>
