@@ -7,7 +7,7 @@
   ![bingoctfgogreenlandingpage](https://res.cloudinary.com/dky3cpvtf/image/upload/v1711051483/Attendance%20App/4_mce9vo.png)
   
 <h3 align="center">Full-Stack JavaScript 
-Attendance Portal</h3>
+Attendance Portal ! 📝</h3>
   <p align="center">
     <br />
     <a href="https://github.com/Puskar-Roy/bingoCTF"><strong>Explore the docs »</strong></a>
@@ -20,6 +20,8 @@ Attendance Portal</h3>
     <a href="https://github.com/Puskar-Roy/Attendance-System---Frontend/issues">Request Feature</a>
   </p>
 </div>
+
+##### Note: *For login in the deployed version, use the following credentials for the admin account: Email - admin@admin.com, Password - admin.*
 
  ## All Features 🌟 
 
@@ -120,7 +122,6 @@ Before you begin contributing to this project, make sure you have the following 
 This section highlights the key frameworks and libraries that form the foundation of your project. Below are some notable examples:
 
 
-- **[![Vercel](https://img.shields.io/badge/Next.JS-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/):** Full Stack React Framework
 - **[![TypeScript](https://shields.io/badge/TypeScript-3178C6?logo=TypeScript&logoColor=FFF&style=flat-square)](https://www.typescriptlang.org/):** A superset of JavaScript that adds static types.
 - **[![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)](https://developer.mozilla.org/en-US/docs/Web/JavaScript):** The programming language of 
 - **[![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/):** The database for modern applications.
