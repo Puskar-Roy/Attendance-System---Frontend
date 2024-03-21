@@ -107,7 +107,7 @@ const UserProfile = () => {
       <div className="bg-white overflow-hidden rounded-lg ">
         <div className="px-4 py-5 sm:px-6">
           <h3 className="text-2xl font-bold leading-6 ubuntu-bold text-center text-gray-900">
-            User <span className="text-indigo-500">Profile</span>
+            User <span className="text-indigo-500">Attendance</span>
           </h3>
         </div>
         {user && (
