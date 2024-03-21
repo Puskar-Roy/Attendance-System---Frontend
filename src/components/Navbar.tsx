@@ -77,8 +77,8 @@ const Navbar = () => {
                 />
                 <NavItem
                   closeNav={toogleMenu}
-                  href="/editAttendance"
-                  tags="Edit Attendance"
+                  href="/usersAttendance"
+                  tags="Manage Attendance"
                 />
               </div>
             ) : null}
@@ -106,7 +106,7 @@ const Navbar = () => {
             {state.user?.role === `${import.meta.env.VITE_ROLE}` ? (
               <div className="list-none flex gap-x-12">
                 <NavItem href="/viewAttendance" tags="View Attendance" />
-                <NavItem href="/editAttendance" tags="Edit Attendance" />
+                <NavItem href="/usersAttendance" tags="Manage Attendance" />
               </div>
             ) : null}
             {state.user && (

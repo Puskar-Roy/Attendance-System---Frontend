@@ -5,6 +5,7 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import Loading from "./Loading";
 import "react-datepicker/dist/react-datepicker.css";
 import { Link } from "react-router-dom";
+import { FaSearch } from "react-icons/fa";
 
 interface Attendance {
   _id: string;
@@ -62,18 +63,22 @@ const ViewAttendance: React.FC = () => {
         </h1>
         <div className="w-[60%] mx-auto flex flex-col gap-9 sm:gap-0 sm:flex-row justify-between items-center">
           <div className="flex gap-2 flex-col ">
-            <h1 className="ubuntu-medium text-lg font-bold">Select Date</h1>
+            <h1 className="ubuntu-medium">
+              Select Date and <span className="text-indigo-500">Search</span>
+            </h1>
             <DatePicker
               className="border-2 border-gray-600 w-[200px] rounded-md text-center p-1 "
               selected={startDate}
               onChange={handleDateChange}
             />
           </div>
+
           <button
-            className="h-[50px] w-[160px] bg-indigo-600 text-white rounded-lg"
+            className="h-[50px] w-[160px] bg-indigo-600 text-white rounded-lg flex justify-center items-center gap-2"
             onClick={handleViewAttendance}
           >
-            View Attendance
+            <FaSearch/>
+            Search
           </button>
         </div>
       </div>

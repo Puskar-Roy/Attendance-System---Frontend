@@ -2,6 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { useNavigate } from "react-router-dom";
+
 import Loading from "./Loading";
 
 interface AttendanceData {
@@ -12,6 +14,7 @@ interface AttendanceData {
 }
 
 const UserProfile = () => {
+    const navigate = useNavigate();
   const { state } = useAuthContext();
   const { id } = useParams();
   const [user, setUser] = useState<AttendanceData>({
@@ -51,7 +54,7 @@ const UserProfile = () => {
     try {
       const newStatus = user.status === "present" ? "absent" : "present";
       const response = await axios.put(
-        `${import.meta.env.VITE_API}/api/attendance/${id}/change-status`,
+        `${import.meta.env.VITE_API}/api/attendance/change-status/${id}`,
         { status: newStatus },
         {
           headers: {
@@ -63,6 +66,28 @@ const UserProfile = () => {
 
       setUser(response.data);
       setLoading(false);
+    } catch (error) {
+      console.error("Error changing status:", error);
+      setLoading(false);
+    }
+  };
+  const handleDelete = async () => {
+    setLoading(true);
+    try {
+     
+     await axios.delete(
+        `${import.meta.env.VITE_API}/api/attendance/${id}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${state.user?.token}`,
+          },
+        }
+      );
+
+      
+      setLoading(false);
+      navigate("/");
     } catch (error) {
       console.error("Error changing status:", error);
       setLoading(false);
@@ -117,12 +142,18 @@ const UserProfile = () => {
             </dl>
           </div>
         )}
-        <div className="px-4 py-5 sm:px-6 text-center">
+        <div className="mt-6 px-4 py-5 flex-col sm:flex-row sm:px-6 text-center flex sm:justify-between justify-center gap-4 sm:gap-0 flex-wrap">
           <button
             onClick={handleChangeStatus}
-            className="bg-indigo-500 p-2 rounded-md text-white text-center"
+            className="bg-indigo-500 p-2 rounded-md text-white text-center w-[130px]"
           >
             Change Status
+          </button>
+          <button
+            onClick={handleDelete}
+            className="bg-indigo-500 p-2 rounded-md text-white text-center w-[130px]"
+          >
+            Delete
           </button>
         </div>
       </div>
