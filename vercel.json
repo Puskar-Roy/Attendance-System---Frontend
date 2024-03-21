@@ -1,9 +1,27 @@
 {
-  "version": 2,
-  "builds": [{ "src": "*.js", "use": "@vercel/node" }],
   "routes": [
     {
-      "src": "/(.*)",
+      "src": "/",
+      "dest": "/"
+    },
+    {
+      "src": "/register",
+      "dest": "/"
+    },
+    {
+      "src": "/login",
+      "dest": "/"
+    },
+    {
+      "src": "/viewAttendance",
+      "dest": "/"
+    },
+    {
+      "src": "/editAttendance/*",
+      "dest": "/"
+    },
+    {
+      "src": "/userprofile",
       "dest": "/"
     }
   ]
