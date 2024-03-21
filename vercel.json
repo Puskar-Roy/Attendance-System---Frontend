@@ -19,6 +19,10 @@
     {
       "src": "/editAttendance",
       "dest": "/"
+    },
+    {
+      "src": "/userprofile",
+      "dest": "/"
     }
   ]
 }
