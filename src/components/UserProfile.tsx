@@ -3,15 +3,9 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useNavigate } from "react-router-dom";
-
+import { AttendanceData } from "../interfaces";
 import Loading from "./Loading";
 
-interface AttendanceData {
-  status: string;
-  userName: string;
-  userEmail: string;
-  date: string;
-}
 
 const UserProfile = () => {
     const navigate = useNavigate();
@@ -87,7 +81,7 @@ const UserProfile = () => {
 
       
       setLoading(false);
-      navigate("/");
+      navigate("/viewAttendance");
     } catch (error) {
       console.error("Error changing status:", error);
       setLoading(false);

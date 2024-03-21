@@ -1,26 +1,11 @@
-import { createContext, useReducer, ReactNode, useEffect } from "react";
+import { createContext, useReducer, useEffect } from "react";
 
-interface State {
-  user: User | null;
-}
-
-export interface User {
-  message?: string;
-  success?: boolean;
-  token?: string;
-  email?: string;
-  role?: string;
-  id?:string;
-}
-
-interface Action {
-  type: string;
-  payload?: unknown;
-}
-
-interface AuthContextProviderProps {
-  children: ReactNode;
-}
+import {
+  State,
+  Action,
+  AuthContextProviderProps,
+  User,
+} from "../interfaces/contexInterface";
 
 const initialState: State = {
   user: null,

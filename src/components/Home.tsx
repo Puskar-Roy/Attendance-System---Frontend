@@ -4,18 +4,14 @@ import { FaHandPaper } from "react-icons/fa";
 import { useAuthContext } from "../hooks/useAuthContext";
 import Admin from "./Admin";
 import Loading from "./Loading";
+import { AttendanceCountData } from "../interfaces";
 
-interface AttendanceData {
-  presentDays: number;
-  absentDays: number;
-}
 const Home = () => {
   const { state } = useAuthContext();
   const [atDone , setAtDone] = useState<boolean>(false);
   const [error , seterror] = useState<boolean>(false);
-  const [attendanceData, setAttendanceData] = useState<AttendanceData | null>(
-    null
-  );
+  const [attendanceData, setAttendanceData] =
+    useState<AttendanceCountData | null>(null);
    const [loading, setLoading] = useState<boolean>(true);
   const getMessage = () => {
     setAtDone(true);

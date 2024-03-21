@@ -6,22 +6,12 @@ import Loading from "./Loading";
 import "react-datepicker/dist/react-datepicker.css";
 import { Link } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
-
-interface Attendance {
-  _id: string;
-  userId: {
-    _id: string;
-    name: string;
-    email: string;
-  };
-  status: string;
-  date: string;
-}
+import { Attendance } from "../interfaces";
 
 const ViewAttendance: React.FC = () => {
   const { state } = useAuthContext();
   const [startDate, setStartDate] = useState<Date>(new Date());
-   const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const [show, setShow] = useState<boolean>(false);
   const [attendanceData, setAttendanceData] = useState<Attendance[]>([]);
 
@@ -77,7 +67,7 @@ const ViewAttendance: React.FC = () => {
             className="h-[50px] w-[160px] bg-indigo-600 text-white rounded-lg flex justify-center items-center gap-2"
             onClick={handleViewAttendance}
           >
-            <FaSearch/>
+            <FaSearch />
             Search
           </button>
         </div>

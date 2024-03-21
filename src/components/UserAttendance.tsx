@@ -3,25 +3,7 @@ import axios from "axios";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { Link } from "react-router-dom";
 import Loading from "./Loading";
-
-interface User {
-  _id: string;
-  name: string;
-  email: string;
-  password: string;
-  role: string;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-}
-
-interface AttendanceDataa {
-  _id: string;
-  userId: string;
-  status: string;
-  date: string;
-  __v: number;
-}
+import { User , AttendanceDataa } from "../interfaces";
 
 const UserAttendance: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
