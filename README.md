@@ -13,7 +13,7 @@ Attendance Portal ! 📝</h3>
     <a href="https://github.com/Puskar-Roy/bingoCTF"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://bingoctf.vercel.app">Go Live</a>
+    <a href="https://attendancee.vercel.app">Go Live</a>
     ·
     <a href="https://github.com/Puskar-Roy/Attendance-System---Frontend/issues">Report Bug</a>
     ·
