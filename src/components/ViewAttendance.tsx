@@ -60,7 +60,7 @@ const ViewAttendance: React.FC = () => {
           View Attendance
         </h1>
         <div className="w-[60%] mx-auto flex flex-col gap-9 sm:gap-0 sm:flex-row justify-between items-center">
-          <div className="flex gap-2 flex-col -z-10">
+          <div className="flex gap-2 flex-col ">
             <h1 className="ubuntu-medium text-lg font-bold">Select Date</h1>
             <DatePicker
               className="border-2 border-gray-600 w-[200px] rounded-md text-center p-1 "
@@ -81,7 +81,7 @@ const ViewAttendance: React.FC = () => {
           {loading ? (
             <Loading />
           ) : (
-            <div className="relative overflow-x-auto max-h-[400px] -z-10">
+            <div className="relative overflow-x-auto max-h-[400px]">
               <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
                   <tr>

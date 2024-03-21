@@ -54,8 +54,8 @@ const Navbar = () => {
         <div
           className={
             toggle
-              ? "sm:hidden absolute top-0 left-0 h-screen w-[300px] flex justify-center items-center  backdrop-blur-[150px] rounded-2xl transition-all duration-900"
-              : "sm:hidden absolute top-0 left-[-100%] h-screen w-[300px] flex justify-center items-center  backdrop-blur-[1px] rounded-2xl transition-all duration-900"
+              ? "sm:hidden absolute top-0 left-0 h-screen w-[300px] flex justify-center items-center  backdrop-blur-[150px] rounded-2xl transition-all duration-400 z-[100]"
+              : "sm:hidden absolute top-0 left-[-100%] h-screen w-[300px] flex justify-center items-center  backdrop-blur-[1px] rounded-2xl transition-all duration-400 z-[100]"
           }
         >
           <ul className="flex flex-col gap-[30px]">
@@ -77,8 +77,8 @@ const Navbar = () => {
                 />
                 <NavItem
                   closeNav={toogleMenu}
-                  href="/takeAttendance"
-                  tags="Take Attendance"
+                  href="/editAttendance"
+                  tags="Edit Attendance"
                 />
               </div>
             ) : null}
@@ -106,7 +106,7 @@ const Navbar = () => {
             {state.user?.role === `${import.meta.env.VITE_ROLE}` ? (
               <div className="list-none flex gap-x-12">
                 <NavItem href="/viewAttendance" tags="View Attendance" />
-                <NavItem href="/takeAttendance" tags="Take Attendance" />
+                <NavItem href="/editAttendance" tags="Edit Attendance" />
               </div>
             ) : null}
             {state.user && (

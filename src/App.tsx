@@ -41,7 +41,7 @@ function App() {
             }
           />
           <Route
-            path="/takeAttendance"
+            path="/editAttendance"
             element={
               state.user?.role === `${import.meta.env.VITE_ROLE}` ? (
                 <TakeAttendance />
