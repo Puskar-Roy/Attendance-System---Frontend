@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import ViewAttendance from "./components/ViewAttendance";
+import UserProfile from "./components/UserProfile";
 import { useAuthContext } from "./hooks/useAuthContext";
 import TakeAttendance from "./components/TakeAttendance";
 
@@ -45,6 +46,16 @@ function App() {
             element={
               state.user?.role === `${import.meta.env.VITE_ROLE}` ? (
                 <TakeAttendance />
+              ) : (
+                <Navigate to="/" />
+              )
+            }
+          />
+          <Route
+            path="/userprofile/:id"
+            element={
+              state.user?.role === `${import.meta.env.VITE_ROLE}` ? (
+                <UserProfile />
               ) : (
                 <Navigate to="/" />
               )

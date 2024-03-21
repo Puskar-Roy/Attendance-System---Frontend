@@ -4,6 +4,7 @@ import axios from "axios";
 import { useAuthContext } from "../hooks/useAuthContext";
 import Loading from "./Loading";
 import "react-datepicker/dist/react-datepicker.css";
+import { Link } from "react-router-dom";
 
 interface Attendance {
   _id: string;
@@ -81,7 +82,7 @@ const ViewAttendance: React.FC = () => {
           {loading ? (
             <Loading />
           ) : (
-            <div className="relative overflow-x-auto max-h-[400px]">
+            <div className="relative overflow-x-auto max-h-[400px] ">
               <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
                   <tr>
@@ -106,12 +107,25 @@ const ViewAttendance: React.FC = () => {
                         scope="row"
                         className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
                       >
-                        {attendance.userId.name}
+                        <Link to={`/userprofile/${attendance._id}`}>
+                          {attendance.userId.name}
+                        </Link>
                       </th>
-                      <td className="px-6 py-4">{attendance.status}</td>
-                      <td className="px-6 py-4">{attendance.userId.email}</td>
+
                       <td className="px-6 py-4">
-                        {attendance.date.toString().slice(0, 10)}
+                        <Link to={`/userprofile/${attendance._id}`}>
+                          {attendance.status}
+                        </Link>
+                      </td>
+                      <td className="px-6 py-4">
+                        <Link to={`/userprofile/${attendance._id}`}>
+                          {attendance.userId.email}
+                        </Link>
+                      </td>
+                      <td className="px-6 py-4">
+                        <Link to={`/userprofile/${attendance._id}`}>
+                          {attendance.date.toString().slice(0, 10)}
+                        </Link>
                       </td>
                     </tr>
                   ))}
