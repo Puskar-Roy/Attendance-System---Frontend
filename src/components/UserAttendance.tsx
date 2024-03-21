@@ -130,7 +130,7 @@ const UserAttendance: React.FC = () => {
                 ))}
               </tbody>
             ) : (
-              <div className="absolute top-[50%] right-[45%] sm:right-[50%] ubuntu-bold text-lg mt-10 sm:mt-5">
+              <div className="ml-[100px] sm:ml-0 sm:absolute top-[50%] right-[50%] sm:right-[47%] ubuntu-bold text-xl mt-25 sm:mt-5 text-indigo-500">
                 No Data
               </div>
             )}
