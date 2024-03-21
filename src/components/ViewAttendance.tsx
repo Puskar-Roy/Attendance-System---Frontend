@@ -54,7 +54,7 @@ const ViewAttendance: React.FC = () => {
         <div className="w-[60%] mx-auto flex flex-col gap-9 sm:gap-0 sm:flex-row justify-between items-center">
           <div className="flex gap-2 flex-col ">
             <h1 className="ubuntu-medium">
-              Select Date and <span className="text-indigo-500">Search</span>
+              Select Date and <span className="text-indigo-500">Search then <br/>click on users</span>
             </h1>
             <DatePicker
               className="border-2 border-gray-600 w-[200px] rounded-md text-center p-1 "
